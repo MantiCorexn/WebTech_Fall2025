@@ -1,0 +1,26 @@
+.container{
+    background-color: #a0a0a0;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 280px;
+
+    border-radius: 10px ;
+
+    /* width: auto; */
+    /* text-align: center; */
+    justify-content: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 2;
+    
+    
+}
+h2{
+    padding-top: 180px;
+    text-align: center;
+    color: rgb(72, 67, 67);
+}
+#font{
+    
+    color: aliceblue;
+}
+        
