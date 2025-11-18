@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+
+
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <div class="container">
+        <form id="reviewForm">
+            <div>
+                     <label>Fullname </label>
+                     <input type="text" id="name">
+                     <div id="nError" class="error"></div>
+               <br>
+                </div>
+                 <div>
+                     <label id="font" for="email">Email</label>
+                     <input type ="text"id="email">
+                     <div  id="eError" class="error"></div>
+                </div>
+
+                <button type="submit">Submit review</button>
+                <button type="reset" id="resetBtn">Reset</button>
+            
+
+
+        </form>
+        
+        <script>
+            document.getElementById("reviewForm").addEventListener("submit", function(event) {
+                
+                event.preventDefault();
+
+                document.getElementById("nError").innerText = "";
+                document.getElementById("eError").innerText = "";
+
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+    
+                let isValid = true;
+
+                
+                if (name.length < 6 || name.length > 100) {
+                document.getElementById("nError").innerText =
+                    "Name should be between 6 and 100 characters";
+                 isValid = false;
+                }
+
+                if (email.length === 0) {
+                    document.getElementById("eError").innerText =
+                        "Email is required";
+                    isValid = false;
+                } else {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(email)) {
+                        document.getElementById("eError").innerText =
+                            "Please enter a valid email address";
+                        isValid = false;
+                    }
+                }
+
+            
+            
+             if (isValid) {
+                alert("Form submitted successfully!");
+            }
+            })
+        </script>
+        
+
+
+    </div>
+    
+</body>
+</html>

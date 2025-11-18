@@ -2,40 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Review Form Validation</title>
 
-    <link rel="stylesheet" href="">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form {
+            width: 350px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+        }
+    </style>
 </head>
+
 <body>
-    <p>
-This paragraph
-contains         a lot of spaces
-in the source         code,
-but the        browser
-ignores it.
-</p>
-<pre>
-  My Bonnie lies over the ocean.
 
-  My Bonnie lies over the sea.
+    <h2>Review Form</h2>
 
-  My Bonnie lies over the ocean.
+    <form id="reviewForm">
+        <!-- Customer Name -->
+        <label>Customer Name (required)</label>
+        <input type="text" id="name">
+        <div id="nameError" class="error"></div>
 
-  Oh, bring back my Bonnie to me.
-</pre>
+        <!-- Email -->
+        <label>Email (optional)</label>
+        <input type="text" id="email">
+        <div id="emailError" class="error"></div>
 
-<em>This text is emphasized</em>
+        <!-- Review Title -->
+        <label>Review Title (required)</label>
+        <input type="text" id="reviewTitle">
+        <div id="reviewError" class="error"></div>
 
-<p>My favorite color is <del>blue</del> red.</p>
-
-<p>My favorite color is <del>blue</del> <ins>red</ins>.</p>
-
-<p>This is <sub>subscripted</sub> text.</p>
-<b>this is mine</b>
+        <button type="submit">Submit Review</button>
+    </form>
 
 
+    <script>
+        document.getElementById("reviewForm").addEventListener("submit", function(event) {
 
+            // Prevent form from submitting
+            event.preventDefault();
+
+            // Clear old errors
+            document.getElementById("nameError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("reviewError").innerText = "";
+
+            // Get input values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const reviewTitle = document.getElementById("reviewTitle").value.trim();
+
+            let isValid = true;
+
+            // -------------------------------
+            // 1. Customer Name Validation
+            // -------------------------------
+            if (name.length < 2 || name.length > 30) {
+                document.getElementById("nameError").innerText =
+                    "Name should be between 2 and 30 characters";
+                isValid = false;
+            }
+
+            // -------------------------------
+            // 2. Email Validation (optional)
+            // -------------------------------
+            if (email.length > 0) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+                    document.getElementById("emailError").innerText =
+                        "Please enter a valid email address";
+                    isValid = false;
+                }
+            }
+
+            // -------------------------------
+            // 3. Review Title Validation
+            // -------------------------------
+            if (reviewTitle.length < 5 || reviewTitle.length > 100) {
+                document.getElementById("reviewError").innerText =
+                    "Review title should be between 5 and 100 characters";
+                isValid = false;
+            }
+
+            // If all fields are valid
+            if (isValid) {
+                alert("Form submitted successfully!");
+            }
+        });
+    </script>
 
 </body>
 </html>
